@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../src/css/style.css">
+    <title>Invertory App</title>
+</head>
+<body>
+
+        <header class="app-header">
+            Invertory App <span class="total-products">7</span>
+        </header>
+        <form class="app-body">
+            <div class="category-section">
+                <h1 class="add-new-category-title">
+                    Add New Category
+            </h1>
+                <div class="create-category">
+                    <label class="label" for="category-title">Category Title</label>
+                    <input placeholder="categori title" type="text" id="category-title" />
+                    <label class="label" for="category-desc">Category Description</label>
+                    <textarea placeholder="description ..." name="" id="category-desc" cols="" rows="" ></textarea>
+                    <div class="btns">
+                        <button class="cancel-category-btn btn">Cancel</button>
+                        <button class="add-new-category-btn btn">Add New Category</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-section">
+                <h1 class="add-new-product-title">
+                    Add New Product
+            </h1>
+                <div class="create-product">
+                    <label class="label" for="product-title">Product Title</label>
+                    <input  type="text" placeholder="product title"  id="product-title" />
+                    <label class="label" for="product-quantity" >Quantity</label>
+                    <input type="number" placeholder="0" max="100" min="1" id="product-quantity" />
+                    <label class="label" for="category-product">Category</label>
+                    <select id="category-product">
+                        <option class="category-product-option" value="">select a category</option>
+                        <option class="category-product-option" value="">select a category</option>
+                    </select>
+                    <div class="btns">
+                        <button class="add-new-product-btn btn">Add New Product</button>
+                    </div>
+                </div>
+            </div>
+            <div class="added-product-section">
+                <h1 class="added-product-title">
+                    Added Products
+            </h1>
+            <div class="sort-products">
+                <label for="sort-products" class="sort-products-label">Sort</label>
+                <select id="sort-products">
+                    <option class="sort-product-option" value="new"> New</option>
+                    <option class="sort-product-option" value="old"> Old</option>
+                </select>
+            </div>
+            <div class="search-products" >
+                <label for="search-product" class="search-products-label" >Search</label>
+                <input type="text" placeholder="search" id="search-product">
+            </div>
+            </div>
+            <div class="product-list">
+                <h1 class="products-list">Products List</h1>
+                <div class="products">
+                    <div class="product">
+                        orange
+                    </div>
+                    <div class="product-option">
+                        <div class="product-date">8.8.88</div>
+                        <div class="product-cat">fruit</div>
+                        <button class="edit-product btn">Edit</button>
+                        <button class="delete-product btn">Delete</button>
+                    </div>
+                </div>
+                <div class="products">
+                    <div class="product">
+                        orange
+                    </div>
+                    <div class="product-option">
+                        <div class="product-date">8.8.88</div>
+                        <div class="product-cat">fruit</div>
+                        <button class="edit-product btn">Edit</button>
+                        <button class="delete-product btn">Delete</button>
+                    </div>
+                </div>
+                <div class="products">
+                    <div class="product">
+                        orange
+                    </div>
+                    <div class="product-option">
+                        <div class="product-date">8.8.88</div>
+                        <div class="product-cat">fruit</div>
+                        <button class="edit-product btn">Edit</button>
+                        <button class="delete-product btn">Delete</button>
+                    </div>
+                </div>
+                <div class="products">
+                    <div class="product">
+                        orange
+                    </div>
+                    <div class="product-option">
+                        <div class="product-date">8.8.88</div>
+                        <div class="product-cat">fruit</div>
+                        <button class="edit-product btn">Edit</button>
+                        <button class="delete-product btn">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-app"></div>
+
+        </form>
+
+    
+</body>
+</html>
