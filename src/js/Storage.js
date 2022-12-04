@@ -39,18 +39,43 @@ export default class Storage{
         return sortedCategories;
     };
     static saveCategory(categoryToSave){
-        const savedCategories = Storage().getAllCategories();
+        const savedCategories = Storage.getAllCategories();
 
-        const isExisted = savedCategories.find((c) => c.id === categoryToSave.id);
+        const isExisted = savedCategories.find((c) => c.id === parseInt(categoryToSave.id));
         if (isExisted){
-
+            isExisted.title = categoryToSave.title;
+            isExisted.description = categoryToSave.description ;
         }else {
-            
+            categoryToSave.id =  new Date().getTime();
+            categoryToSave.createdAt = new Date().toISOString() ;
+            savedCategories.push(categoryToSave);
         }
-    
+    localStorage.setItem('category' , JSON.stringify(savedCategories));
     }
-    
+    static getAllProducts(){
 
+        const savedProducts = JSON.parse(localStorage.getItem('product')) || [];
+        const sortedProducts = savedProducts.sort((a,b) =>{
+            return new Date(a.updated) > new Date(b.updated) ? -1 : 1;
+        });
+        return sortedProducts;
+    };
+    static saveProduct(productToSave){
+        const savedProducts = Storage.getAllProducts();
+
+        const isExisted = savedProducts.find((c) => c.id === parseInt(productToSave.id));
+        if (isExisted){
+            isExisted.title = productToSave.title;
+            isExisted.category = productToSave.category ;
+            isExisted.quantity = productToSave.quantity ;
+            isExisted.updated = new Date().toISOString();
+        }else {
+            productToSave.id =  new Date().getTime();
+            productToSave.updated = new Date().toISOString() ;
+            savedProducts.push(productToSave);
+        }
+    localStorage.setItem('product' , JSON.stringify(savedProducts));
+    }
 
 
 }
