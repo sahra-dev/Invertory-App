@@ -28,6 +28,7 @@
                     </div>
                 </div>
             </div>
+            <button id="toggle-add-category">Add New Category ?</button>
             <div class="product-section">
                 <h1 class="add-new-product-title">
                     Add New Product
@@ -54,8 +55,8 @@
             <div class="sort-products">
                 <label for="sort-products" class="sort-products-label">Sort</label>
                 <select id="sort-products">
-                    <option class="sort-product-option" value="new"> New</option>
-                    <option class="sort-product-option" value="old"> Old</option>
+                    <option class="sort-product-option" selected value="newest"> Newest</option>
+                    <option class="sort-product-option" value="oldest"> Oldest</option>
                 </select>
             </div>
             <div class="search-products" >
@@ -80,7 +81,23 @@
            
             </div>
 
+            <div class="backdrop"></div>
             <div class="footer-app"></div>
+
+            <div class="modal-product">
+                    <label class="label" for="product-title">Edit Product Title</label>
+                    <input  type="text" placeholder="product title"  id="product-title-edit" />
+                    <label class="label" for="product-quantity" >Edit Quantity</label>
+                    <input type="number" placeholder="0" max="100" min="1" id="product-quantity-edit" />
+                    <label class="label" for="category-product">Edit Category</label>
+                    <select id="category-product-edit">
+                        <!-- <option class="category-product-option" value="">select a category</option>
+                        <option class="category-product-option" value="">select a category</option> -->
+                    </select>
+                    <div class="btns">
+                        <button class="add-new-product-btn btn">Edit Product</button>
+                    </div>
+            </div>
 
         </form>
 

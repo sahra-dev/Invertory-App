@@ -6,11 +6,15 @@ const productQuantity = document.getElementById('product-quantity');
 const addNewProductBtn = document.querySelector('.add-new-product-btn');
 const productCategory = document.getElementById('category-product');
 const searchInput = document.querySelector('#search-product');
+const selectedSort = document.querySelector('#sort-products');
+
 
 class ProductView{
     constructor(){
         addNewProductBtn.addEventListener('click' , (e) => this.addNewProduct(e))
         searchInput.addEventListener('input' , (e) => this.searchProducts(e));
+        selectedSort.addEventListener('change' , (e) => this.sortProducts(e)) ;
+        
         this.products =[];
     }
     setApp(){
@@ -46,8 +50,14 @@ class ProductView{
                 <button class="delete-product btn" data-id='${item.id}'>Delete</button>
             </div>
         </div>`;
-        })
-        productsDom.innerHTML = result;
+    })
+    productsDom.innerHTML = result;
+    const deleteProdctBtns =[... document.querySelectorAll('.delete-product')]
+    // console.log(deleteProdctBtns)
+    deleteProdctBtns.forEach( item => {
+        item.addEventListener('click' ,(e) => this.deleteProduct(e))
+    })
+    // deleteProdctBtns.forEach( item => item.addEventListener('click' , e => console.log(e.target)))
     }
     searchProducts(e){
         const value = e.target.value.trim().toLowerCase();
@@ -56,6 +66,18 @@ class ProductView{
         })
 
         this.createProductList(filteredProducts)
+    }
+    sortProducts(e){
+        const value = e.target.value ;
+        this.products = Storage.getAllProducts(value);
+        this.createProductList(this.products);
+    }
+    deleteProduct(e){
+        e.preventDefault();
+        const productId =e.target.dataset.id;
+        Storage.deleteProduct(productId);
+        this.setApp();
+        this.createProductList(this.products);
     }
 }
 

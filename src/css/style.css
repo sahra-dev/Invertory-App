@@ -6,7 +6,8 @@ html{
 body{
     padding: 0;
     margin: 0;
-    font-family:cursive , "Yekan";
+    box-sizing: border-box;
+    font-family: cursive , "Yekan";
     font-weight: 200;
     /* width: 100%; */
     /* height: 100%; */
@@ -18,11 +19,11 @@ body{
 }
 
 :root{
-    --backgroundColor :rgba(6, 6, 7, 0.81);
+    --backgroundColor :rgb(61, 61, 65);
     --headerColor :rgba(110, 110, 133, 0.81);
     --mainBlack : rgba(0, 0, 0, 1);
     --mainWhite : rgba(255, 255, 255, 1);
-    --primaryColor : rgba(135, 135, 136, 0.81);
+    --primaryColor : rgb(135, 135, 136);
     --secondaryColor :rgba(255, 255, 255, 0.6);
 }
 
@@ -66,6 +67,7 @@ body{
 /* Body application */
 
 .app-body{
+    
     margin-top: 2rem;
     width: 60rem;
     height: 100vh;
@@ -73,6 +75,7 @@ body{
     height: 2rem;
     /* display: flex; */
     /* flex-direction: colu */
+    position: relative;
 
 }
 .add-new-category-title ,
@@ -82,20 +85,31 @@ body{
 .sort-products-label , 
 .search-products-label,
 .product ,
-.product-option{
+.product-option ,
+#toggle-add-category{ 
     color: var(--secondaryColor) ;
     font-weight: 200;
     font-size: 2rem;
     margin-left: 1.5rem;
+    background-color: transparent;
+    border: none;
+    font-family: cursive , "Yekan";
+}
+#toggle-add-category{
+    cursor: pointer;
+    padding: 0.5rem;
+    color: var(--headerColor);
 }
 .sort-products-label , 
 .search-products-label,
 .product ,
 .product-option{
-    font-size: 1.5rem;
+
+    font-size: 1.8rem;
 }
 .create-category ,
-.create-product{
+.create-product,
+.modal-product{
     background-color: var(--primaryColor);
     border-radius: 3rem;
     display: flex;
@@ -107,7 +121,9 @@ body{
 }
 #category-title ,
 #product-title,
+#product-title-edit,
 #category-product,
+#category-product-edit,
 #sort-products,
 #search-product{
     font-family:cursive;
@@ -162,7 +178,8 @@ body{
 #category-desc::-webkit-scrollbar {
     display: none;
 }
-#product-quantity{
+#product-quantity,
+#product-quantity-edit{
     font-size: 1.7rem;
     border: 1px solid var(--mainWhite);
     width: 20rem;
@@ -174,7 +191,8 @@ body{
     color: var(--mainWhite);
     background-color: transparent;
 }
-#category-product{
+#category-product,
+#category-product-edit{
     margin-bottom: 2rem;
     
 }
@@ -195,8 +213,10 @@ body{
     .added-product-title,
     .sort-products-label ,
     .search-products-label,
-    .product-list{
-        font-size: 1.6rem;
+    .product-list,
+    #toggle-add-category
+    {
+        font-size: 1.5rem;
     }
     .btn{
         font-size: 1.3rem;
@@ -222,7 +242,7 @@ body{
 }
 .sort-products-label ,
 .search-products-label,
-.product{
+.product{  
     color: var(--mainWhite);
     font-weight:100;
 }
@@ -235,8 +255,11 @@ body{
 #category-title:focus,
 #category-desc:focus ,
 #product-title:focus ,
-#product-quantity:focus ,
+#product-title-edit:focus ,
+#product-quantity:focus,
+#product-quantity-edit:focus ,
 #category-product:focus ,
+#category-product-edit:focus ,
 #sort-products:focus ,
 #search-product:focus{
     border-color: var(--primaryColor);
@@ -247,6 +270,7 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 .product-option{
     width: 27rem;
@@ -256,6 +280,8 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: "Yekan";
+
 }
 .delete-product ,
 .edit-product {
@@ -274,14 +300,14 @@ body{
     padding-left: 0.4rem;
     padding-right: 0.4rem;
     border-radius: 1rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 .quantity{
     border: 1px solid var(--headerColor);
-    padding: 0.5rem;
+    padding: 0.3rem;
     border-radius: 100%;
-    width: 1.5rem;
-    font-size: 1.1rem;
+    width: 2rem;
+    font-size: 1.3rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -290,8 +316,26 @@ body{
     border: none;
 }
 
+.category-section{
+    display: none;
+}
 /* FOOTER */
 
 .footer-app{
     height: 10rem;
+}
+/* MODAL */
+
+.backdrop{
+    width: 100%;
+    height: 200vh;
+    position: absolute;
+    top: 0;
+    background-color:rgb(51, 51, 56,0.8);
+    display: none;
+}
+.modal-product{
+    position: sticky;
+    bottom: 10rem;
+    display: none;
 }

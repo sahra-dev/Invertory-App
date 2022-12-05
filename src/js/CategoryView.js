@@ -4,9 +4,15 @@ import Storage from "./Storage.js";
 const categoryTitle = document.getElementById('category-title');
 const categoryDesc  = document.getElementById('category-desc');
 const addNewCategoryBtn = document.querySelector('.add-new-category-btn');
+const toggleCategoryBtn = document.querySelector('#toggle-add-category');
+const categorySection = document.querySelector('.category-section');
+const cancelCategoryBtn = document.querySelector('.cancel-category-btn')
+
 class CategoryView{
     constructor(){
         addNewCategoryBtn.addEventListener('click' ,e => this.addNewCategory(e))
+        toggleCategoryBtn.addEventListener('click' , (e) => this.toggleAddCategory(e))
+        cancelCategoryBtn.addEventListener('click' , (e)=> this.cancelCategory(e))
         this.categories = [];
           
     }
@@ -36,6 +42,18 @@ class CategoryView{
         const productCategory = document.querySelector('#category-product');
         productCategory.innerHTML = result;
 
+    }
+    toggleAddCategory(e){
+        e.preventDefault();
+        toggleCategoryBtn.style.display ="none";
+        categorySection.style.display = "block";
+    }
+    cancelCategory(e){
+        e.preventDefault();
+        toggleCategoryBtn.style.display ="block";
+        categorySection.style.display = "none";
+        categoryTitle.value="";
+        categoryDesc.value="";
     }
 
 }
