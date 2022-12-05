@@ -9,8 +9,6 @@ body{
     box-sizing: border-box;
     font-family: cursive , "Yekan";
     font-weight: 200;
-    /* width: 100%; */
-    /* height: 100%; */
     background-color: var(--backgroundColor);
     display: flex;
     flex-direction: column;
@@ -71,10 +69,7 @@ body{
     margin-top: 2rem;
     width: 60rem;
     height: 100vh;
-    /* background-color: aqua; */
     height: 2rem;
-    /* display: flex; */
-    /* flex-direction: colu */
     position: relative;
 
 }
@@ -232,7 +227,6 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
 }
 .sort-products{
     width: 100%;
@@ -334,8 +328,8 @@ body{
     background-color:rgb(51, 51, 56,0.8);
     display: none;
 }
-.modal-product{
+.modal-products{
     position: sticky;
-    bottom: 10rem;
-    display: none;
+    bottom: 5rem;
+    visibility: hidden;
 }
