@@ -28,8 +28,11 @@ class ProductView{
         const title = productTitle.value ;
         const quantity = productQuantity.value ;
         const category = productCategory.value ;
-        if (!title || !quantity || !category) return ;
-
+ 
+        if (!title || !quantity || !category) {
+            alert('please fill all of options');
+             return;
+        }
         Storage.saveProduct({title ,quantity , category});
         this.products = Storage.getAllProducts();
         productTitle.value='';
@@ -42,26 +45,28 @@ class ProductView{
         const productsDom = document.querySelector('.products-list');
         let result = '';
         products.forEach(item => {
-            const selectedCategory = Storage.getAllCategories().find(c=> c.id === parseInt(item.category))
+            const selectedCategory = Storage.getAllCategories().find(c => c.id === parseInt(item.category))
             result +=`<div class="products">
             <div class="product">${item.title}</div>
             <div class="product-option">
             <div class="product-date">${new Date(item.updated).toLocaleString('fa-IR' , {dateStyle: 'short'})}</div>
             <div class="quantity">${item.quantity}</div>
-                <div class="product-cat">${selectedCategory.title}</div>
+                <div class="product-cat">
+                ${selectedCategory.title}
+                </div>
                 <button class="edit-product btn" data-id='${item.id}'>Edit</button>
                 <button class="delete-product btn" data-id='${item.id}'>Delete</button>
             </div>
         </div>`;
-
-        
+               
     })
 
     let totalProducts = 0;
     products.forEach(item =>{
         totalProducts += parseInt(item.quantity);
     })
-    // console.log(totalProducts);
+    
+    
     totalProductsNumber.innerText = totalProducts;
     if (totalProducts<1){
         totalProductsNumber.style.visibility="hidden";
@@ -105,26 +110,26 @@ class ProductView{
         const productId =e.target.dataset.id;
         backDrop.style.display = "block" ;
         modalProduct.style.visibility= "visible";
-        console.log(productTitle.value);
 
-        const categories= Storage.getAllCategories();       
-        let option =`<option class="category-product-option" value="">Select a category</option>` 
-        categories.forEach(element => {
-           option +=`<option class="category-product-option" value="${element.id}">${element.title}</option>`;
-        });
-
+        // const categories= Storage.getAllCategories();       
+        // let option =`<option class="category-product-option" value="">select a category</option>` 
+        // categories.forEach(element => {
+        //    option +=`<option class="category-product-option" value="${element.id}">${element.title}</option>`;
+        // });
         const selectedProduct = Storage.getAllProducts().find( c => parseInt(c.id) === parseInt(productId));
+        const selectedCategory = Storage.getAllCategories().find(c => c.id === parseInt(selectedProduct.category))
         const div = document.createElement('div');
         div.className ="modal-product";
         let result=`<label class="label" for="product-title-edit">Edit Product Title</label>
         <input  type="text" placeholder="product title" class="product-title-edit" value=${selectedProduct.title} id="product-title-edit" />
         <label class="label" for="product-quantity-edit" >Edit Quantity</label>
         <input type="number" placeholder="0" max="100" min="1" value=${selectedProduct.quantity} id="product-quantity-edit" />
-        <label class="label" for="category-product-edit">Edit Category</label>
-        <select id="category-product-edit" value=>${option}</select>
+        <label class="label" for="edit-category">Edit Product Title</label>
+        <input  type="text" class="product-title-edit" value=${selectedCategory.title} id="product-title-edit" disabled />
+       
         <div class="btns">
             <button class="cancel-edit-product-btn btn">Cancel</button>
-            <button class="add-new-product-btn btn">Edit Product</button>
+            <button class="edit-new-product-btn btn" data-id='${selectedProduct.id}'>Edit Product</button>
         </div>`;
         div.innerHTML=result;
         modalProduct.appendChild(div)
@@ -140,8 +145,25 @@ class ProductView{
         modalProduct.removeChild(div);
             })
         })
-    }
+        const editModalBtn = [... document.querySelectorAll('.edit-new-product-btn')];
+        editModalBtn.forEach( item =>{
+            item.addEventListener('click' , e => {
+                e.preventDefault()
+                backDrop.style.display = "none" ;
+                modalProduct.style.visibility= "hidden";
+                modalProduct.removeChild(div);
+                const title = selectedProduct.title;
+                const quantity = selectedProduct.quantity;
+                if (!title || !quantity){
+                     alert('please fill all of options') ;
+                     return;
+                }
 
+                // console.log(category)
+            })
+        }
+        )}
+    
 }
 
 export default new ProductView();

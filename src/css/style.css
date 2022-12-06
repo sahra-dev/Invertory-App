@@ -166,7 +166,8 @@ body{
     font-weight: 500;
 }
 .add-new-category-btn,
-.add-new-product-btn{
+.add-new-product-btn ,
+.edit-new-product-btn{
     background-color: var(--mainWhite);
     color: var(--mainBlack);
 }
